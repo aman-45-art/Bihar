@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Bihar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS for animation on scroll -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+         .header {
+            position: fixed; /* Makes header stay at top when scrolling */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white; /* Or any color you prefer */
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds subtle shadow */
+        }
+
+        /* Style for the logo */
+        .logo {
+            height: 50px; /* Adjust as needed */
+            max-width: 200px; /* Adjust as needed */
+        }
+
+        /* Add padding to body so content doesn't hide behind fixed header */
+        body {
+            margin-top: 70px;
+        }
+        body {
+            position: relative;
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+        }
+        .carousel img {
+            height: 580px;
+            object-fit: cover;
+        }
+        section {
+            padding: 80px 0;
+        }
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .navbar.scrolled {
+            background-color: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        #destinations .card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        #destinations .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        #destinations .card-body .btn {
+            margin-top: auto;
+            transition: transform 0.3s;
+        }
+        #destinations .card-body .btn:hover {
+            transform: scale(1.1);
+            animation: pulse 1.5s infinite;
+        }
+        #destinations .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 5px;
+        }
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0);
+            }
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarScrollSpy" data-bs-offset="70" tabindex="0">
+    <header class="header">
+        <a href="index.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJBQQ8JVlxEUo8aruTqRfgncwdQJCRe_KY3A&s" alt="Company Logo" class="logo">
+        </a>
+    </header>
+    <!-- Navbar -->
+    <nav id="navbarScrollSpy" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Explore Bihar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#about-us">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    </section>
+    <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://cdn.getyourguide.com/img/tour/22ae120b04efeac6ffafc38061428d8517a1e3b7730763474307f23439fbff2f.jpg/146.jpg" class="d-block w-100" alt="Bodh Gaya">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Bodh Gaya</h5>
+                    <p>The place where Lord Buddha attained enlightenment.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://miro.medium.com/v2/resize:fit:1024/1*mahqN0AcNuNnGAsClUYwQQ.jpeg" class="d-block w-100" alt="Nalanda">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Nalanda</h5>
+                    <p>Explore the ruins of the ancient Nalanda University.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.trawell.in/admin/images/upload/175285165glass_bridge.jpg" class="d-block w-100" alt="Rajgir">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Rajgir</h5>
+                    <p>Known for its hot springs and ancient Buddhist sites.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.ytimg.com/vi/pz_9CyGGOdo/maxresdefault.jpg" class="d-block w-100" alt="Valmiki National Park">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Valmiki National Park</h5>
+                    <p>Home to tigers, leopards, and a stunning range of biodiversity.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://s7ap1.scene7.com/is/image/incredibleindia/gol-ghar-patna-bihar-1-attr-hero?qlt=82&ts=1726740340434" class="d-block w-100" alt="Gol Ghar">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Gol Ghar</h5>
+                    <p>An iconic granary offering panoramic views of Patna.</p>
+                </div>
+            </div>
+            <!-- New Carousel Item: Patna Sahib Gurudwara -->
+            <div class="carousel-item">
+                <img src="https://media2.thrillophilia.com/images/photos/000/364/946/original/1611083705_cq5dam.web.640.640.jpeg?width=1600&height=775" class="d-block w-100" alt="Patna Sahib Gurudwara">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>Patna Sahib Gurudwara</h5>
+                    <p>A sacred Sikh shrine and birthplace of Guru Gobind Singh Ji.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#destinationCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#destinationCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- About Us Section -->
+           
+    <section id="about-us" class="bg-light">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-up">About Us</h2>
+            <p class="text-center" data-aos="fade-up" data-aos-delay="200">Discover the cultural and historical treasures of Bihar. From the enlightenment of Buddha in Bodh Gaya to the ancient wisdom of Nalanda, Bihar offers a journey through history, spirituality, and natural beauty.</p>
+        </div>
+         <!-- Video in Hero Section -->
+         <video class="d-block w-100" autoplay loop muted>
+            <source src ="bihar_english.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="carousel-caption d-none d-md-block">
+            <h5>Bihar</h5>
+            <p>The place where Lord Buddha attained enlightenment.</p>
+        </div>
+    </div>
+    </section>
+    <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+         
+
+    <!-- Destinations Section -->
+    <section id="destinations">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-up">Destinations</h2>
+            <div class="row mt-4">
+                <!-- Bodh Gaya -->
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card">
+                        <img src="https://memorymuseum.net/wp-content/uploads/2020/04/bodh-gaya-1.jpg" class="card-img-top" alt="Bodh Gaya">
+                        <div class="card-body">
+                            <h5 class="card-title">Bodh Gaya</h5>
+                            <p class="card-text">Visit the Mahabodhi Temple, a UNESCO World Heritage Site.</p>
+                            <button class="btn btn-primary" onclick="alert('Bodh Gaya is where Lord Buddha attained enlightenment under the Bodhi tree. The Mahabodhi Temple is a must-visit for spiritual seekers.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nalanda -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card">
+                        <img src="https://preview.redd.it/new-nalanda-university-campus-most-depressing-looking-v0-6hrkyul0zee81.png?width=640&crop=smart&auto=webp&s=0361c9b04655441765251cbb0589c92b33be57a7" class="card-img-top" alt="Nalanda">
+                        <div class="card-body">
+                            <h5 class="card-title">Nalanda</h5>
+                            <p class="card-text">Explore the ancient ruins of Nalanda University.</p>
+                            <button class="btn btn-primary" onclick="alert('Nalanda was one of the greatest centers of learning in ancient times. It is a treasure trove for history enthusiasts.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Rajgir -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card">
+                        <img src="https://www.trawell.in/admin/images/upload/125543521Rajgir_Vishwa_Shanti_Stupa_Main.jpg" class="card-img-top" alt="Rajgir">
+                        <div class="card-body">
+                            <h5 class="card-title">Rajgir</h5>
+                            <p class="card-text">Enjoy the hot springs and visit ancient Buddhist monasteries.</p>
+                            <button class="btn btn-primary" onclick="alert('Rajgir is famous for its hot springs, Vishwa Shanti Stupa, and its role in Buddhist history.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Valmiki National Park -->
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card">
+                        <img src="https://i.ytimg.com/vi/pz_9CyGGOdo/maxresdefault.jpg" class="card-img-top" alt="Valmiki National Park">
+                        <div class="card-body">
+                            <h5 class="card-title">Valmiki National Park</h5>
+                            <p class="card-text">A haven for wildlife enthusiasts, home to tigers and leopards.</p>
+                            <button class="btn btn-primary" onclick="alert('Valmiki National Park is one of the most biodiverse regions in Bihar. It is home to a range of wildlife, including tigers and leopards.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gol Ghar -->
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card">
+                        <img src="https://s7ap1.scene7.com/is/image/incredibleindia/gol-ghar-patna-bihar-1-attr-hero?qlt=82&ts=1726740340434" class="card-img-top" alt="Gol Ghar">
+                        <div class="card-body">
+                            <h5 class="card-title">Gol Ghar</h5>
+                            <p class="card-text">An iconic granary offering panoramic views of Patna.</p>
+                            <button class="btn btn-primary" onclick="alert('Gol Ghar is a historic structure in Patna, built as a granary. It offers stunning views of the city and is a popular tourist spot.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Patna Sahib Gurudwara -->
+                <div class="col-md-4 mb-4" data-aos="fade-up">
+                    <div class="card">
+                        <img src="https://www.india.com/wp-content/uploads/2024/02/Patna-Sahib-Gurudwara-3.jpg" class="card-img-top" alt="Patna Sahib Gurudwara">
+                        <div class="card-body">
+                            <h5 class="card-title">Patna Sahib Gurudwara</h5>
+                            <p class="card-text">A sacred Sikh shrine and birthplace of Guru Gobind Singh Ji.</p>
+                            <button class="btn btn-primary" onclick="alert('Patna Sahib Gurudwara is an important Sikh pilgrimage site. It is the birthplace of Guru Gobind Singh Ji, the 10th Sikh Guru.')">More Info</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact-us" class="bg-light">
+        <div class="container">
+            <h2 class="text-center" data-aos="fade-up">Contact Us</h2>
+            <p class="text-center" data-aos="fade-up" data-aos-delay="200">Email us at <a href="mailto:info@explorebihar.com">info@explorebihar.com</a> or call us at 9523659003</p>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS for scroll animations -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-out-back',
+            once: true
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
