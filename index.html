@@ -3,292 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Bihar</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- AOS CSS for animation on scroll -->
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <title>Bihar Tourism</title>
     <style>
-         .header {
-            position: fixed; /* Makes header stay at top when scrolling */
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: white; /* Or any color you prefer */
-            padding: 10px 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: adds subtle shadow */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* Style for the logo */
-        .logo {
-            height: 50px; /* Adjust as needed */
-            max-width: 200px; /* Adjust as needed */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
-        /* Add padding to body so content doesn't hide behind fixed header */
-        body {
-            margin-top: 70px;
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
         }
-        body {
-            position: relative;
-            scroll-behavior: smooth; /* Smooth scrolling for navigation */
-        }
-        .carousel img {
-            height: 580px;
-            object-fit: cover;
-        }
-        section {
-            padding: 80px 0;
-        }
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-        .navbar.scrolled {
-            background-color: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        #destinations .card {
+
+        nav {
             display: flex;
-            flex-direction: column;
-            height: 100%;
-            transition: transform 0.3s, box-shadow 0.3s;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
-        #destinations .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+        nav .logo h1 {
+            font-size: 1.8em;
         }
-        #destinations .card-body .btn {
-            margin-top: auto;
-            transition: transform 0.3s;
+
+        nav .nav-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
         }
-        #destinations .card-body .btn:hover {
-            transform: scale(1.1);
-            animation: pulse 1.5s infinite;
+
+        nav .nav-links a:hover {
+            text-decoration: underline;
         }
-        #destinations .card-img-top {
-            height: 200px;
-            object-fit: cover;
+
+        nav .festival-nav a {
+            background-color: #444;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1em;
+        }
+
+        nav .festival-nav a:hover {
+            background-color: #555;
+        }
+
+        .hero {
+            position: relative;
             width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 1s ease;
+        }
+
+        .carousel img, .carousel video {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2em;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .welcome {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .welcome h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            font-size: 1.2em;
+        }
+
+        .destinations, .explore, .festivals, .accommodation, .travel-tips, .art-culture {
+            padding: 30px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .destinations h3, .explore h3, .festivals h3, .accommodation h3, .travel-tips h3, .art-culture h3 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .destination-cards, .extra-places, .festival-events, .accommodation-options, .art-culture-cards {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card, .place, .festival, .accommodation-card, .art-card {
+            background-color: #fff;
+            padding: 20px;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .card h4, .place h4, .festival h4, .accommodation-card h4, .art-card h4 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .place p, .festival p, .accommodation-card p, .art-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        .card img, .place img, .art-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .more-info {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            width: 100%;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .more-info:hover {
+            background-color: #444;
+        }
+
+        .place-description {
+            display: none;
+            margin-top: 10px;
+            font-size: 1em;
+            color: #555;
+            text-align: left;
+            padding: 10px;
+            background-color: #f1f1f1;
             border-radius: 5px;
         }
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 1.1em;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation for fading in */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
             }
-            50% {
-                box-shadow: 0 0 20px 10px rgba(0, 123, 255, 0);
+            100% {
+                opacity: 1;
             }
         }
+
+        /* Hover effect for festival images */
+        .festival img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .festival img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .festival h4 {
+            font-size: 1.3em;
+            transition: color 0.3s ease;
+        }
+
+        .festival:hover h4 {
+            color: #ff6600; /* Change to an accent color */
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 768px) {
+            .destination-cards, .art-culture-cards, .festival-events {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card, .art-card, .festival {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+        .card img, .place img, .art-card img, .festival img {
+    width: 100%;
+    height: 200px; /* Adjust to your preferred height */
+    object-fit: cover; /* Ensures the images cover the space without distortion */
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+/* Animation for fading in sections */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply fade-in animation to destination and culture sections */
+.destinations, .art-culture {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Hover effect for destination and culture cards */
+.card, .art-card, .festival {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, .art-card:hover, .festival:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect for festival images */
+.festival img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.festival img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive animations for smaller screens */
+@media (max-width: 768px) {
+    .destinations, .art-culture {
+        animation: fadeIn 1s ease-out;
+    }
+
+    .card, .art-card, .festival {
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover, .art-card:hover, .festival:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+}
+
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#navbarScrollSpy" data-bs-offset="70" tabindex="0">
-    <header class="header">
-        <a href="index.html">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJBQQ8JVlxEUo8aruTqRfgncwdQJCRe_KY3A&s" alt="Company Logo" class="logo">
-        </a>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Bihar Tourism</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#">Explore Bihar</a>
+                <a href="#">Art & Culture</a>
+                <a href="#">Festivals</a>
+                <a href="#">About</a>
+            </div>
+            
+        </nav>
     </header>
-    <!-- Navbar -->
-    <nav id="navbarScrollSpy" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Explore Bihar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#about-us">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Carousel -->
+
+    <section class="hero">
+        <div class="carousel">
+            <video muted autoplay loop>
+                <source src="bihar_english.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-button" id="prevBtn">&#10094;</button>
+            <button class="carousel-button" id="nextBtn">&#10095;</button>
+        </div>
     </section>
-    <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://cdn.getyourguide.com/img/tour/22ae120b04efeac6ffafc38061428d8517a1e3b7730763474307f23439fbff2f.jpg/146.jpg" class="d-block w-100" alt="Bodh Gaya">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Bodh Gaya</h5>
-                    <p>The place where Lord Buddha attained enlightenment.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://miro.medium.com/v2/resize:fit:1024/1*mahqN0AcNuNnGAsClUYwQQ.jpeg" class="d-block w-100" alt="Nalanda">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Nalanda</h5>
-                    <p>Explore the ruins of the ancient Nalanda University.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://www.trawell.in/admin/images/upload/175285165glass_bridge.jpg" class="d-block w-100" alt="Rajgir">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Rajgir</h5>
-                    <p>Known for its hot springs and ancient Buddhist sites.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://i.ytimg.com/vi/pz_9CyGGOdo/maxresdefault.jpg" class="d-block w-100" alt="Valmiki National Park">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Valmiki National Park</h5>
-                    <p>Home to tigers, leopards, and a stunning range of biodiversity.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://s7ap1.scene7.com/is/image/incredibleindia/gol-ghar-patna-bihar-1-attr-hero?qlt=82&ts=1726740340434" class="d-block w-100" alt="Gol Ghar">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Gol Ghar</h5>
-                    <p>An iconic granary offering panoramic views of Patna.</p>
-                </div>
-            </div>
-            <!-- New Carousel Item: Patna Sahib Gurudwara -->
-            <div class="carousel-item">
-                <img src="https://media2.thrillophilia.com/images/photos/000/364/946/original/1611083705_cq5dam.web.640.640.jpeg?width=1600&height=775" class="d-block w-100" alt="Patna Sahib Gurudwara">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Patna Sahib Gurudwara</h5>
-                    <p>A sacred Sikh shrine and birthplace of Guru Gobind Singh Ji.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#destinationCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#destinationCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 
-    <!-- About Us Section -->
-           
-    <section id="about-us" class="bg-light">
-        <div class="container">
-            <h2 class="text-center" data-aos="fade-up">About Us</h2>
-            <p class="text-center" data-aos="fade-up" data-aos-delay="200">Discover the cultural and historical treasures of Bihar. From the enlightenment of Buddha in Bodh Gaya to the ancient wisdom of Nalanda, Bihar offers a journey through history, spirituality, and natural beauty.</p>
-        </div>
-         <!-- Video in Hero Section -->
-         <video class="d-block w-100" autoplay loop muted>
-            <source src ="bihar_english.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="carousel-caption d-none d-md-block">
-            <h5>Bihar</h5>
-            <p>The place where Lord Buddha attained enlightenment.</p>
-        </div>
-    </div>
+    <section class="welcome">
+        <h2>Welcome to Bihar Tourism</h2>
+        <p>Discover the cultural richness and natural beauty of Bihar. From its bustling cities to tranquil wilderness, Bihar has something for everyone.</p>
     </section>
-    <div id="destinationCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-         
 
-    <!-- Destinations Section -->
-    <section id="destinations">
-        <div class="container">
-            <h2 class="text-center" data-aos="fade-up">Destinations</h2>
-            <div class="row mt-4">
-                <!-- Bodh Gaya -->
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card">
-                        <img src="https://memorymuseum.net/wp-content/uploads/2020/04/bodh-gaya-1.jpg" class="card-img-top" alt="Bodh Gaya">
-                        <div class="card-body">
-                            <h5 class="card-title">Bodh Gaya</h5>
-                            <p class="card-text">Visit the Mahabodhi Temple, a UNESCO World Heritage Site.</p>
-                            <button class="btn btn-primary" onclick="alert('Bodh Gaya is where Lord Buddha attained enlightenment under the Bodhi tree. The Mahabodhi Temple is a must-visit for spiritual seekers.')">More Info</button>
-                        </div>
-                    </div>
+    <!-- Top Destinations Section -->
+    <section class="destinations">
+        <h3>Top Destinations</h3>
+        <div class="destination-cards">
+            <div class="card">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/78/5a/8b/great-buddha-statue.jpg?w=1400&h=1400&s=1" alt="Gaya">
+                <h4>Gaya</h4>
+                <p>Mahabodhi Temple</p>
+                <button class="more-info" onclick="toggleDescription('gaya-description')">More Info</button>
+                <div class="place-description" id="gaya-description">
+                    Gaya is an important religious destination in Bihar. It is home to the Mahabodhi Temple, where Lord Buddha attained enlightenment.
                 </div>
-                <!-- Nalanda -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card">
-                        <img src="https://preview.redd.it/new-nalanda-university-campus-most-depressing-looking-v0-6hrkyul0zee81.png?width=640&crop=smart&auto=webp&s=0361c9b04655441765251cbb0589c92b33be57a7" class="card-img-top" alt="Nalanda">
-                        <div class="card-body">
-                            <h5 class="card-title">Nalanda</h5>
-                            <p class="card-text">Explore the ancient ruins of Nalanda University.</p>
-                            <button class="btn btn-primary" onclick="alert('Nalanda was one of the greatest centers of learning in ancient times. It is a treasure trove for history enthusiasts.')">More Info</button>
-                        </div>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="https://theindosphere.com/wp-content/uploads/2024/06/image-7.jpg.webp" alt="Nalanda">
+                <h4>Nalanda</h4>
+                <p>Vishwa Shanti Stupa</p>
+                <button class="more-info" onclick="toggleDescription('nalanda-description')">More Info</button>
+                <div class="place-description" id="nalanda-description">
+                    Nalanda is a historical city, home to the ancient Nalanda University and the Vishwa Shanti Stupa.
                 </div>
-                <!-- Rajgir -->
-                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card">
-                        <img src="https://www.trawell.in/admin/images/upload/125543521Rajgir_Vishwa_Shanti_Stupa_Main.jpg" class="card-img-top" alt="Rajgir">
-                        <div class="card-body">
-                            <h5 class="card-title">Rajgir</h5>
-                            <p class="card-text">Enjoy the hot springs and visit ancient Buddhist monasteries.</p>
-                            <button class="btn btn-primary" onclick="alert('Rajgir is famous for its hot springs, Vishwa Shanti Stupa, and its role in Buddhist history.')">More Info</button>
-                        </div>
-                    </div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBKSDK-nANr15XY3LGdsZ4jEysbIxLQcK7cg&s" alt="Vaishali">
+                <h4>Vaishali</h4>
+                <p>Ashokan Pillar</p>
+                <button class="more-info" onclick="toggleDescription('vaishali-description')">More Info</button>
+                <div class="place-description" id="vaishali-description">
+                    Vaishali is a significant archaeological site in Bihar, known for the Ashokan Pillar and its connection to Lord Buddha's teachings.
                 </div>
-                <!-- Valmiki National Park -->
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card">
-                        <img src="https://i.ytimg.com/vi/pz_9CyGGOdo/maxresdefault.jpg" class="card-img-top" alt="Valmiki National Park">
-                        <div class="card-body">
-                            <h5 class="card-title">Valmiki National Park</h5>
-                            <p class="card-text">A haven for wildlife enthusiasts, home to tigers and leopards.</p>
-                            <button class="btn btn-primary" onclick="alert('Valmiki National Park is one of the most biodiverse regions in Bihar. It is home to a range of wildlife, including tigers and leopards.')">More Info</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Gol Ghar -->
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card">
-                        <img src="https://s7ap1.scene7.com/is/image/incredibleindia/gol-ghar-patna-bihar-1-attr-hero?qlt=82&ts=1726740340434" class="card-img-top" alt="Gol Ghar">
-                        <div class="card-body">
-                            <h5 class="card-title">Gol Ghar</h5>
-                            <p class="card-text">An iconic granary offering panoramic views of Patna.</p>
-                            <button class="btn btn-primary" onclick="alert('Gol Ghar is a historic structure in Patna, built as a granary. It offers stunning views of the city and is a popular tourist spot.')">More Info</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Patna Sahib Gurudwara -->
-                <div class="col-md-4 mb-4" data-aos="fade-up">
-                    <div class="card">
-                        <img src="https://www.india.com/wp-content/uploads/2024/02/Patna-Sahib-Gurudwara-3.jpg" class="card-img-top" alt="Patna Sahib Gurudwara">
-                        <div class="card-body">
-                            <h5 class="card-title">Patna Sahib Gurudwara</h5>
-                            <p class="card-text">A sacred Sikh shrine and birthplace of Guru Gobind Singh Ji.</p>
-                            <button class="btn btn-primary" onclick="alert('Patna Sahib Gurudwara is an important Sikh pilgrimage site. It is the birthplace of Guru Gobind Singh Ji, the 10th Sikh Guru.')">More Info</button>
-                        </div>
-                    </div>
+            </div>
+            <!-- More Destinations -->
+            <div class="card">
+                <img src="https://i.ytimg.com/vi/yGp_o04GYF8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAilUPuFk1RIpjA0y-MFJefEO2M6A" alt="Patna">
+                <h4>Patna</h4>
+                <p>Gol Ghar</p>
+                <button class="more-info" onclick="toggleDescription('patna-description')">More Info</button>
+                <div class="place-description" id="patna-description">
+                    Patna, the capital city of Bihar, is known for historical landmarks like Gol Ghar, a large granary built by the British in 1786.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Us Section -->
-    <section id="contact-us" class="bg-light">
-        <div class="container">
-            <h2 class="text-center" data-aos="fade-up">Contact Us</h2>
-            <p class="text-center" data-aos="fade-up" data-aos-delay="200">Email us at <a href="mailto:info@explorebihar.com">info@explorebihar.com</a> or call us at 9523659003</p>
+    <!-- Art & Culture Section -->
+    <section class="art-culture">
+        <h3>Art & Culture of Bihar</h3>
+        <div class="art-culture-cards">
+            <div class="art-card">
+                <img src="https://i.pinimg.com/736x/9c/e0/01/9ce0014db25b46440421a51813b3d6a4.jpg" alt="Maithili Painting">
+                <h4>Maithili Painting</h4>
+                <p>Traditional folk art of Bihar, known for intricate patterns and vibrant colors.</p>
+                <button class="more-info" onclick="toggleDescription('maithili-description')">More Info</button>
+                <div class="place-description" id="maithili-description">
+                    Maithili painting is a famous form of folk art from the Mithila region of Bihar, characterized by vibrant colors and detailed patterns.
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxW0JxqqqzD_BZ1q1vTljlr-pnZXZEDlPhIg&s" alt="Sikki Art">
+                <h4>Sikki Art</h4>
+                <p>Handicraft art made using grass, intricately woven into beautiful patterns.</p>
+                <button class="more-info" onclick="toggleDescription('sikki-description')">More Info</button>
+                <div class="place-description" id="sikki-description">
+                    Sikki art is a traditional craft of Bihar, where the grass is woven into decorative pieces such as baskets and dolls.
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4dxcK5gUJuNPryibj_z85Z9exA2FbR_zn3g&s" alt="Bihar Handloom">
+                <h4>Bihar Handloom</h4>
+                <p>Traditional handwoven textiles from Bihar, including Madhubani sarees and other fabrics.</p>
+                <button class="more-info" onclick="toggleDescription('handloom-description')">More Info</button>
+                <div class="place-description" id="handloom-description">
+                    Bihar's handloom industry is known for its exquisite Madhubani sarees and other traditional textiles, which are made using ancient weaving techniques passed down through generations.
+                </div>
+            </div>
+            <div class="art-card">
+                <img src="https://i.ytimg.com/vi/Kgb-KaH2L74/sddefault.jpg" alt="Bihar Dance Forms">
+                <h4>Bihar Dance Forms</h4>
+                <p>Folk dance styles such as "Bidesia" and "Jat-Jatin" celebrate Bihar’s rural life.</p>
+                <button class="more-info" onclick="toggleDescription('dance-forms-description')">More Info</button>
+                <div class="place-description" id="dance-forms-description">
+                    Bihar is known for folk dances such as "Bidesia" and "Jat-Jatin," which are performed during festivals and cultural gatherings to showcase rural life and stories.
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- AOS JS for scroll animations -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- Famous Festivals Section -->
+    <section class="festivals" id="festivals">
+        <h3>Famous Festivals</h3>
+        <div class="festival-events">
+            <div class="festival">
+                <img src="https://staticimg.amarujala.com/assets/images/2024/10/14/chhath-puja-2024_a2ec6d0470e154c66748f06a6866368c.jpeg?w=750&dpr=1.0" alt="Chhath Puja">
+                <h4>Chhath Puja</h4>
+                <p>A major festival dedicated to the Sun God, celebrated with devotion across Bihar.</p>
+                <button class="more-info" onclick="toggleDescription('chhath-description')">More Info</button>
+                <div class="place-description" id="chhath-description">
+                    Chhath Puja is an important festival in Bihar where devotees offer prayers to the Sun God for health, wealth, and prosperity.
+                </div>
+            </div>
+            <div class="festival">
+                <img src="https://akm-img-a-in.tosshub.com/aajtak/images/story/202005/budhh_1024_1588817917_749x421.jpeg?size=948:533" alt="Buddha Purnima">
+                <h4>Buddha Purnima</h4>
+                <p>Celebrates the birth, enlightenment, and death anniversary of Lord Buddha.</p>
+                <button class="more-info" onclick="toggleDescription('buddha-description')">More Info</button>
+                <div class="place-description" id="buddha-description">
+                    Buddha Purnima marks the anniversary of Lord Buddha's birth and enlightenment. It is observed in Bodh Gaya with prayers and rituals.
+                </div>
+            </div>
+            <!-- More Festivals -->
+            <div class="festival">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe5O9SaSkQV7yVpn5sQFt2wy_keODLb0S_9HAhdDktpo4pNv0uh6VrAL8lYtNCk3B0n5o&usqp=CAU" alt="Makar Sankranti">
+                <h4>Makar Sankranti</h4>
+                <p>A festival celebrating the harvest season and the arrival of winter.</p>
+                <button class="more-info" onclick="toggleDescription('makar-description')">More Info</button>
+                <div class="place-description" id="makar-description">
+                    Makar Sankranti is celebrated in Bihar with kite flying, bonfires, and special foods, marking the harvest season.
+                </div>
+            </div>
+            <div class="festival">
+                <img src="https://cdnblog.picsart.com/2021/03/What-Are-the-Colors-of-Holi-.jpg?to=max&r=700&type=webp" alt="Makar Sankranti">
+                <h4>Holi</h4>
+                <p>Celebration of colors, joy, and the arrival of spring.</p>
+                <button class="more-info" onclick="toggleDescription('holi-description')">More Info</button>
+                <div class="place-description" id="holi-description">
+                    Holi in Bihar is celebrated with a unique fervor, with people playing with colors, dancing, and enjoying delicious sweets. 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Contact us: <a href="mailto:info@bihartourism.com">info@bihartourism.com</a> | Phone: +91 9523659003</p>
+        <p>&copy; 2025 Bihar Tourism. All rights reserved.</p>
+    </footer>
+
     <script>
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-out-back',
-            once: true
-        });
-
-        // Navbar scroll effect
-        const navbar = document.querySelector('.navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
+        function toggleDescription(id) {
+            var element = document.getElementById(id);
+            if (element.style.display === "none" || element.style.display === "") {
+                element.style.display = "block";
             } else {
-                navbar.classList.remove('scrolled');
+                element.style.display = "none";
             }
-        });
+        }
     </script>
+
 </body>
 </html>
