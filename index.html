@@ -217,6 +217,80 @@
                 opacity: 1;
             }
         }
+        .explore {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .place {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        margin: 15px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .place:hover {
+        transform: scale(1.05);
+    }
+
+    .place img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .place img:hover {
+        transform: scale(1.1);
+    }
+
+    .more-info {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .more-info:hover {
+        background-color: #0056b3;
+    }
+
+    .place-description {
+        display: none;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, max-height 0.5s ease-in-out;
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
+
+    .place-description.show {
+        display: block;
+        opacity: 1;
+        max-height: 200px;
+    }
 
         /* Hover effect for festival images */
         .festival img {
@@ -332,11 +406,7 @@
             <video muted autoplay loop>
                 <source src="bihar_english.mp4" type="video/mp4">
                 Your browser does not support the video tag.
-            </video>
-        </div>
-        <div class="carousel-controls">
-            <button class="carousel-button" id="prevBtn">&#10094;</button>
-            <button class="carousel-button" id="nextBtn">&#10095;</button>
+           
         </div>
     </section>
 
@@ -429,6 +499,48 @@
                     Bihar is known for folk dances such as "Bidesia" and "Jat-Jatin," which are performed during festivals and cultural gatherings to showcase rural life and stories.
                 </div>
             </div>
+        </div>
+    </section>
+    <section class="explore">
+        <h3>Extraordinary Places to Visit</h3>
+        <div class="extra-places">
+            <div class="place">
+                <img src="https://www.drishtiias.com/images/uploads/1626088444_image3.jpg" alt="Kesaria Stupa">
+                <h4>Kesaria Stupa</h4>
+                <p>The tallest Buddhist stupa in the world.</p>
+                <button class="more-info" onclick="toggleDescription('kesaria-description')">More Info</button>
+                <div class="place-description" id="kesaria-description">
+                    This grand stupa is believed to be built by Emperor Ashoka and holds great historical importance.
+                </div>
+            </div>
+    
+            <div class="place">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbzgmy4BBY00PNII6gblFAOoHV13pwDpGBaA&s" alt="Rohtasgarh Fort">
+                <h4>Rohtasgarh Fort</h4>
+                <p>A historical fort known for its magnificent architecture.</p>
+                <button class="more-info" onclick="toggleDescription('rohtasgarh-description')">More Info</button>
+                <div class="place-description" id="rohtasgarh-description">
+                    Built by Sher Shah Suri, this fort showcases medieval Indian military architecture.
+                </div>
+            </div>
+            <div class="place">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkdh1LVGzuT0GP3DNbz1N1U5UYrP1VBYNr-mNdFzLUGhd1SAhk1T-kfe5Pdd_0VgI6yc&usqp=CAU" alt="Mandar Hill">
+                <h4>Mandar Hill</h4>
+                <p>A mythological and historical hill associated with the churning of the ocean (Samudra Manthan).</p>
+                <button class="more-info" onclick="toggleDescription('mandar-description')">More Info</button>
+                <div class="place-description" id="mandar-description">
+                    Mandar Hill in Banka district is a sacred and scenic spot linked to Hindu mythology, attracting pilgrims and trekkers alike.
+                </div>
+            </div>
+    
+            <div class="place">
+                <img src="https://www.begusarai.net/uploads/images/202303/image_750x_6402dbd0832ff.jpg" alt="Kanwar Lake">
+                <h4>Kanwar Lake</h4>
+                <p>The largest freshwater oxbow lake in India, a paradise for bird watchers.</p>
+                <button class="more-info" onclick="toggleDescription('kanwar-description')">More Info</button>
+                <div class="place-description" id="kanwar-description">
+                    Kanwar Lake in Begusarai is Asia's largest oxbow lake, attracting thousands of migratory birds and offering stunning natural beauty.
+                </div>
         </div>
     </section>
 
