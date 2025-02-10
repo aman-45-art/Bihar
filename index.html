@@ -3,603 +3,433 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bihar Tourism</title>
+    <title>Bihar Tourism - District Showcase</title>
     <style>
-        * {
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             color: #333;
         }
 
-        header {
-            background-color: #333;
+        h1, h2 {
+            color: #2c3e50;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #34495e;
             color: white;
-            padding: 15px 0;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        nav .logo h1 {
-            font-size: 1.8em;
-        }
-
-        nav .nav-links a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav .nav-links a:hover {
-            text-decoration: underline;
-        }
-
-        nav .festival-nav a {
-            background-color: #444;
-            padding: 10px;
-            color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.1em;
-        }
-
-        nav .festival-nav a:hover {
-            background-color: #555;
-        }
-
-        .hero {
+        /* Hero Section Styles */
+        .hero-section {
             position: relative;
-            width: 100%;
-            height: 500px;
+            height: 60vh;
+            background: black;
             overflow: hidden;
         }
 
-        .carousel {
-            display: flex;
-            transition: transform 1s ease;
-        }
-
-        .carousel img, .carousel video {
+        .hero-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 500px;
+            height: 100%;
             object-fit: cover;
+            opacity: 0.6;
         }
 
-        .carousel-controls {
+        .hero-content {
             position: absolute;
             top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
-        .carousel-button {
-            background-color: rgba(0, 0, 0, 0.5);
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
-            border: none;
-            font-size: 2em;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Search Section Styles */
+        .search-container {
+            display: flex;
+            justify-content: center;
             padding: 10px;
+            background-color: #2c3e50;
+        }
+
+        .search-container input {
+            padding: 12px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            padding: 12px 20px;
+            background-color: #16a085;
+            border: none;
+            color: white;
             cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
         }
 
-        .carousel-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        /* Districts Section */
+        .district-card {
+            width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Key for vertical alignment */
         }
 
-        .welcome {
+        .district-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .district-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .district-info {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1; /* Takes up available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically centers content */
+        }
+
+        .district-info h3 {
+            margin: 10px 0;
+            color: #34495e;
+            font-size: 1.5rem;
+        }
+
+        .district-info p {
+            margin: 5px 0;
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: #ecf0f1;
             padding: 50px 20px;
             text-align: center;
-            background-color: #fff;
+            max-width: 1200px;
+            margin: 50px auto;
+            border-radius: 10px;
         }
 
-        .welcome h2 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        .about-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
         }
 
-        .welcome p {
-            font-size: 1.2em;
+        .about-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            color: #34495e;
         }
 
-        .destinations, .explore, .festivals, .accommodation, .travel-tips, .art-culture {
-            padding: 30px 20px;
-            background-color: #f9f9f9;
-        }
-
-        .destinations h3, .explore h3, .festivals h3, .accommodation h3, .travel-tips h3, .art-culture h3 {
-            font-size: 2em;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .destination-cards, .extra-places, .festival-events, .accommodation-options, .art-culture-cards {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .card, .place, .festival, .accommodation-card, .art-card {
-            background-color: #fff;
+        /* Footer Section */
+        .footer {
+            background-color: #34495e;
+            color: white;
             padding: 20px;
-            width: 250px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            position: relative;
-        }
-
-        .card h4, .place h4, .festival h4, .accommodation-card h4, .art-card h4 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .card p, .place p, .festival p, .accommodation-card p, .art-card p {
-            font-size: 1.1em;
-            color: #555;
-        }
-
-        .card img, .place img, .art-card img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
         }
 
-        .more-info {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-            width: 100%;
+        .footer p {
+            margin: 0;
+        }
+
+        /* Result Section */
+        .result-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        /* Additional Styling for Buttons and Alerts */
+        button:focus {
+            outline: none;
+        }
+
+        .result-container .district-card {
+            margin-top: 20px;
+        }
+
+        .alert {
+            color: red;
+            font-weight: bold;
             text-align: center;
-            border-radius: 5px;
-            margin-top: 10px;
         }
-
-        .more-info:hover {
-            background-color: #444;
-        }
-
-        .place-description {
-            display: none;
-            margin-top: 10px;
-            font-size: 1em;
-            color: #555;
-            text-align: left;
-            padding: 10px;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer p {
-            font-size: 1.1em;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animation for fading in */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        .explore {
-        opacity: 0;
-        transform: translateY(50px);
-        animation: fadeInUp 1s ease-out forwards;
-    }
-
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .place {
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 15px;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .place:hover {
-        transform: scale(1.05);
-    }
-
-    .place img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        transition: transform 0.3s ease-in-out;
-    }
-
-    .place img:hover {
-        transform: scale(1.1);
-    }
-
-    .more-info {
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-top: 10px;
-        transition: background 0.3s ease;
-    }
-
-    .more-info:hover {
-        background-color: #0056b3;
-    }
-
-    .place-description {
-        display: none;
-        opacity: 0;
-        max-height: 0;
-        overflow: hidden;
-        transition: opacity 0.5s ease, max-height 0.5s ease-in-out;
-        margin-top: 10px;
-        padding: 10px;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-    }
-
-    .place-description.show {
-        display: block;
-        opacity: 1;
-        max-height: 200px;
-    }
-
-        /* Hover effect for festival images */
-        .festival img {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .festival img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .festival h4 {
-            font-size: 1.3em;
-            transition: color 0.3s ease;
-        }
-
-        .festival:hover h4 {
-            color: #ff6600; /* Change to an accent color */
-        }
-
-        /* Responsive layout for smaller screens */
-        @media (max-width: 768px) {
-            .destination-cards, .art-culture-cards, .festival-events {
-                flex-direction: column;
-                align-items: center;
-            }
-            .card, .art-card, .festival {
-                width: 80%;
-                margin-bottom: 20px;
-            }
-        }
-        .card img, .place img, .art-card img, .festival img {
-    width: 100%;
-    height: 200px; /* Adjust to your preferred height */
-    object-fit: cover; /* Ensures the images cover the space without distortion */
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-/* Animation for fading in sections */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Apply fade-in animation to destination and culture sections */
-.destinations, .art-culture {
-    animation: fadeIn 1s ease-out;
-}
-
-/* Hover effect for destination and culture cards */
-.card, .art-card, .festival {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover, .art-card:hover, .festival:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Hover effect for festival images */
-.festival img {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.festival img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Responsive animations for smaller screens */
-@media (max-width: 768px) {
-    .destinations, .art-culture {
-        animation: fadeIn 1s ease-out;
-    }
-
-    .card, .art-card, .festival {
-        transition: transform 0.3s ease;
-    }
-
-    .card:hover, .art-card:hover, .festival:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-}
-
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <h1>Bihar Tourism</h1>
-            </div>
-            <div class="nav-links">
-                <a href="#">Explore Bihar</a>
-                <a href="#">Art & Culture</a>
-                <a href="#">Festivals</a>
-                <a href="#">About</a>
-            </div>
-            
-        </nav>
-    </header>
 
+    <div class="hero-section">
+        <video autoplay muted loop>
+            <source src="bihar_english.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Explore Bihar</h1>
+            <p>Discover the rich culture, history, and traditions of Bihar through its beautiful districts</p>
+        </div>
+    </div>
 
-    <section class="hero">
-        <div class="carousel">
-            <video muted autoplay loop>
-                <source src="bihar_english.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-           
+    <div class="header">
+        <h1>Districts of Bihar</h1>
+    </div>
+
+    <section id="search">
+        <h2>Search for a District</h2>
+        <div class="search-container">
+            <input type="text" id="search-district" placeholder="Type district name...">
+            <button onclick="searchDistrict()">Search</button>
         </div>
     </section>
 
-    <section class="welcome">
-        <h2>Welcome to Bihar Tourism</h2>
-        <p>Discover the cultural richness and natural beauty of Bihar. From its bustling cities to tranquil wilderness, Bihar has something for everyone.</p>
+    <section id="result">
+        <h2>Result</h2>
+        <div class="result-container"></div>
     </section>
 
-    <!-- Top Destinations Section -->
-    <section class="destinations">
-        <h3>Top Destinations</h3>
-        <div class="destination-cards">
-            <div class="card">
-                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/78/5a/8b/great-buddha-statue.jpg?w=1400&h=1400&s=1" alt="Gaya">
-                <h4>Gaya</h4>
-                <p>Mahabodhi Temple</p>
-                <button class="more-info" onclick="toggleDescription('gaya-description')">More Info</button>
-                <div class="place-description" id="gaya-description">
-                    Gaya is an important religious destination in Bihar. It is home to the Mahabodhi Temple, where Lord Buddha attained enlightenment.
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://theindosphere.com/wp-content/uploads/2024/06/image-7.jpg.webp" alt="Nalanda">
-                <h4>Nalanda</h4>
-                <p>Vishwa Shanti Stupa</p>
-                <button class="more-info" onclick="toggleDescription('nalanda-description')">More Info</button>
-                <div class="place-description" id="nalanda-description">
-                    Nalanda is a historical city, home to the ancient Nalanda University and the Vishwa Shanti Stupa.
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBKSDK-nANr15XY3LGdsZ4jEysbIxLQcK7cg&s" alt="Vaishali">
-                <h4>Vaishali</h4>
-                <p>Ashokan Pillar</p>
-                <button class="more-info" onclick="toggleDescription('vaishali-description')">More Info</button>
-                <div class="place-description" id="vaishali-description">
-                    Vaishali is a significant archaeological site in Bihar, known for the Ashokan Pillar and its connection to Lord Buddha's teachings.
-                </div>
-            </div>
-            <!-- More Destinations -->
-            <div class="card">
-                <img src="https://i.ytimg.com/vi/yGp_o04GYF8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAilUPuFk1RIpjA0y-MFJefEO2M6A" alt="Patna">
-                <h4>Patna</h4>
-                <p>Gol Ghar</p>
-                <button class="more-info" onclick="toggleDescription('patna-description')">More Info</button>
-                <div class="place-description" id="patna-description">
-                    Patna, the capital city of Bihar, is known for historical landmarks like Gol Ghar, a large granary built by the British in 1786.
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="about-section">
+        <h2>About Bihar</h2>
+        <p>Bihar is a state located in eastern India, known for its historical significance and rich cultural heritage. From the ancient university of Nalanda to the religious importance of Bodh Gaya, Bihar has always been a land of knowledge and spirituality. The state's diverse culture, local traditions, and delicious cuisine make it a must-visit for travelers seeking an authentic Indian experience.</p>
+    </div>
 
-    <!-- Art & Culture Section -->
-    <section class="art-culture">
-        <h3>Art & Culture of Bihar</h3>
-        <div class="art-culture-cards">
-            <div class="art-card">
-                <img src="https://i.pinimg.com/736x/9c/e0/01/9ce0014db25b46440421a51813b3d6a4.jpg" alt="Maithili Painting">
-                <h4>Maithili Painting</h4>
-                <p>Traditional folk art of Bihar, known for intricate patterns and vibrant colors.</p>
-                <button class="more-info" onclick="toggleDescription('maithili-description')">More Info</button>
-                <div class="place-description" id="maithili-description">
-                    Maithili painting is a famous form of folk art from the Mithila region of Bihar, characterized by vibrant colors and detailed patterns.
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxW0JxqqqzD_BZ1q1vTljlr-pnZXZEDlPhIg&s" alt="Sikki Art">
-                <h4>Sikki Art</h4>
-                <p>Handicraft art made using grass, intricately woven into beautiful patterns.</p>
-                <button class="more-info" onclick="toggleDescription('sikki-description')">More Info</button>
-                <div class="place-description" id="sikki-description">
-                    Sikki art is a traditional craft of Bihar, where the grass is woven into decorative pieces such as baskets and dolls.
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4dxcK5gUJuNPryibj_z85Z9exA2FbR_zn3g&s" alt="Bihar Handloom">
-                <h4>Bihar Handloom</h4>
-                <p>Traditional handwoven textiles from Bihar, including Madhubani sarees and other fabrics.</p>
-                <button class="more-info" onclick="toggleDescription('handloom-description')">More Info</button>
-                <div class="place-description" id="handloom-description">
-                    Bihar's handloom industry is known for its exquisite Madhubani sarees and other traditional textiles, which are made using ancient weaving techniques passed down through generations.
-                </div>
-            </div>
-            <div class="art-card">
-                <img src="https://i.ytimg.com/vi/Kgb-KaH2L74/sddefault.jpg" alt="Bihar Dance Forms">
-                <h4>Bihar Dance Forms</h4>
-                <p>Folk dance styles such as "Bidesia" and "Jat-Jatin" celebrate Bihar’s rural life.</p>
-                <button class="more-info" onclick="toggleDescription('dance-forms-description')">More Info</button>
-                <div class="place-description" id="dance-forms-description">
-                    Bihar is known for folk dances such as "Bidesia" and "Jat-Jatin," which are performed during festivals and cultural gatherings to showcase rural life and stories.
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="explore">
-        <h3>Extraordinary Places to Visit</h3>
-        <div class="extra-places">
-            <div class="place">
-                <img src="https://www.drishtiias.com/images/uploads/1626088444_image3.jpg" alt="Kesaria Stupa">
-                <h4>Kesaria Stupa</h4>
-                <p>The tallest Buddhist stupa in the world.</p>
-                <button class="more-info" onclick="toggleDescription('kesaria-description')">More Info</button>
-                <div class="place-description" id="kesaria-description">
-                    This grand stupa is believed to be built by Emperor Ashoka and holds great historical importance.
-                </div>
-            </div>
-    
-            <div class="place">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbzgmy4BBY00PNII6gblFAOoHV13pwDpGBaA&s" alt="Rohtasgarh Fort">
-                <h4>Rohtasgarh Fort</h4>
-                <p>A historical fort known for its magnificent architecture.</p>
-                <button class="more-info" onclick="toggleDescription('rohtasgarh-description')">More Info</button>
-                <div class="place-description" id="rohtasgarh-description">
-                    Built by Sher Shah Suri, this fort showcases medieval Indian military architecture.
-                </div>
-            </div>
-            <div class="place">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkdh1LVGzuT0GP3DNbz1N1U5UYrP1VBYNr-mNdFzLUGhd1SAhk1T-kfe5Pdd_0VgI6yc&usqp=CAU" alt="Mandar Hill">
-                <h4>Mandar Hill</h4>
-                <p>A mythological and historical hill associated with the churning of the ocean (Samudra Manthan).</p>
-                <button class="more-info" onclick="toggleDescription('mandar-description')">More Info</button>
-                <div class="place-description" id="mandar-description">
-                    Mandar Hill in Banka district is a sacred and scenic spot linked to Hindu mythology, attracting pilgrims and trekkers alike.
-                </div>
-            </div>
-    
-            <div class="place">
-                <img src="https://www.begusarai.net/uploads/images/202303/image_750x_6402dbd0832ff.jpg" alt="Kanwar Lake">
-                <h4>Kanwar Lake</h4>
-                <p>The largest freshwater oxbow lake in India, a paradise for bird watchers.</p>
-                <button class="more-info" onclick="toggleDescription('kanwar-description')">More Info</button>
-                <div class="place-description" id="kanwar-description">
-                    Kanwar Lake in Begusarai is Asia's largest oxbow lake, attracting thousands of migratory birds and offering stunning natural beauty.
-                </div>
-        </div>
-    </section>
-
-    <!-- Famous Festivals Section -->
-    <section class="festivals" id="festivals">
-        <h3>Famous Festivals</h3>
-        <div class="festival-events">
-            <div class="festival">
-                <img src="https://staticimg.amarujala.com/assets/images/2024/10/14/chhath-puja-2024_a2ec6d0470e154c66748f06a6866368c.jpeg?w=750&dpr=1.0" alt="Chhath Puja">
-                <h4>Chhath Puja</h4>
-                <p>A major festival dedicated to the Sun God, celebrated with devotion across Bihar.</p>
-                <button class="more-info" onclick="toggleDescription('chhath-description')">More Info</button>
-                <div class="place-description" id="chhath-description">
-                    Chhath Puja is an important festival in Bihar where devotees offer prayers to the Sun God for health, wealth, and prosperity.
-                </div>
-            </div>
-            <div class="festival">
-                <img src="https://akm-img-a-in.tosshub.com/aajtak/images/story/202005/budhh_1024_1588817917_749x421.jpeg?size=948:533" alt="Buddha Purnima">
-                <h4>Buddha Purnima</h4>
-                <p>Celebrates the birth, enlightenment, and death anniversary of Lord Buddha.</p>
-                <button class="more-info" onclick="toggleDescription('buddha-description')">More Info</button>
-                <div class="place-description" id="buddha-description">
-                    Buddha Purnima marks the anniversary of Lord Buddha's birth and enlightenment. It is observed in Bodh Gaya with prayers and rituals.
-                </div>
-            </div>
-            <!-- More Festivals -->
-            <div class="festival">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe5O9SaSkQV7yVpn5sQFt2wy_keODLb0S_9HAhdDktpo4pNv0uh6VrAL8lYtNCk3B0n5o&usqp=CAU" alt="Makar Sankranti">
-                <h4>Makar Sankranti</h4>
-                <p>A festival celebrating the harvest season and the arrival of winter.</p>
-                <button class="more-info" onclick="toggleDescription('makar-description')">More Info</button>
-                <div class="place-description" id="makar-description">
-                    Makar Sankranti is celebrated in Bihar with kite flying, bonfires, and special foods, marking the harvest season.
-                </div>
-            </div>
-            <div class="festival">
-                <img src="https://cdnblog.picsart.com/2021/03/What-Are-the-Colors-of-Holi-.jpg?to=max&r=700&type=webp" alt="Makar Sankranti">
-                <h4>Holi</h4>
-                <p>Celebration of colors, joy, and the arrival of spring.</p>
-                <button class="more-info" onclick="toggleDescription('holi-description')">More Info</button>
-                <div class="place-description" id="holi-description">
-                    Holi in Bihar is celebrated with a unique fervor, with people playing with colors, dancing, and enjoying delicious sweets. 
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>Contact us: <a href="mailto:info@bihartourism.com">info@bihartourism.com</a> | Phone: +91 9523659003</p>
-        <p>&copy; 2025 Bihar Tourism. All rights reserved.</p>
-    </footer>
+    <div class="footer">
+        <p>&copy; 2025 Bihar Tourism. All Rights Reserved.</p>
+    </div>
 
     <script>
-        function toggleDescription(id) {
-            var element = document.getElementById(id);
-            if (element.style.display === "none" || element.style.display === "") {
-                element.style.display = "block";
+        const districtData = {
+            "patna": {
+                place: "Golghar",
+                food: "Litti Chokha",
+                placeImg: "https://www.livehindustan.com/lh-img/uploadimage/library/2022/12/17/16_9/16_9_6/golghar_1671271199.JPG"
+            },
+            "gaya": {
+                place: "Mahabodhi Temple",
+                food: "Tilkut",
+                placeImg: "https://static.toiimg.com/thumb/47081465.cms?resizemode=75&width=1200&height=900"
+            },
+            "muzaffarpur": {
+                place: "Buddha Stupa",
+                food: "Tilkut",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlGGjl5H06ITL0zZerwi1-BAUMkgDK_BFzTyss8fDEPpCNoxd3l0hKcgOW5soEMwZMwqQ&usqp=CAU"
+            },
+            "bhagalpur": {
+                place: "Vikramshila Ruins",
+                food: "Khaja",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCF9NjnYEP1Ir8wb2o9vYwLPi-uaNAXjfV2kk__DOufAuX2HsnVM7dz8ck9wXgKOfR8yU&usqp=CAU"
+            },
+            "darbhanga": {
+                place: "Darbhanga Fort",
+                food: "Makhana Kheer",
+                placeImg: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Fort_of_Darbhanga.jpg"
+            },
+            "begusarai": {
+                place: "Kali Mandir",
+                food: "Litti Chokha",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzoIHHaybusmGXUCZRG-S2FqDraopAq1IrSec7H35fVX8Vp7hEQikq18eP6KIJpl2Ck64&usqp=CAU"
+            },
+            "saran": {
+                place: "Chhath Ghat",
+                food: "Sattu Paratha",
+                placeImg: "https://drop.ndtv.com/albums/NEWS/chhath-puja-fes_638028020440186759/638028020491902329.jpeg"
+            },
+            "vaishali": {
+                place: "Vaishali Stupa",
+                food: "Litti Chokha",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuz4ngXv8CRMsd3B_OCbe07BXCWgHzVOefQ1F-Xqf-oKxJ6URivhkl2JOYPr9yiUGog50&usqp=CAU"
+            },
+            "siwan": {
+                place: "Mahendranath Temple",
+                food: "Chana Ghugni",
+                placeImg: "https://images.bhaskarassets.com/thumb/1200x900/web2images/521/2021/10/20/3_1634750277.jpg"
+            },
+            "west champaran": {
+                place: "Kesaria Stupa",
+                food: "Sattu Paratha",
+                placeImg: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Kesaria_Stupa.jpg"
+            },
+            "east champaran": {
+                place: "Motihari",
+                food: "Tilkut",
+                placeImg: "https://i.ytimg.com/vi/DwVndej9uIE/maxresdefault.jpg"
+            },
+            "buxar": {
+                place: "Buxar Fort",
+                food: "Sattu Paratha",
+                placeImg: "https://www.bodhibihar.com/wp-content/uploads/2020/06/buxar-Forts.jpg"
+            },
+            "koderma": {
+                place: "Koderma Hills",
+                food: "Makhana Kheer",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuF0SNoP-TdWNKQks0flXedIwb2t6TF3nkzPXaBgsQkZ52o3kGwhz5Y1Hcmnk86WQwrvE&usqp=CAU"
+            },
+            "jahanabad": {
+                place: "Jehanabad Fort",
+                food: "Litti Chokha",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7oiM-hOw_karEYt1907nq2GlHPLxvF5p-eqwKE2DdKi1riqokqgly65aKIY-3jbcjS_M&usqp=CAU"
+            },
+            "arwal": {
+                place: "Arwal Fort",
+                food: "Makhana Kheer",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl7C5XNb6aoEHr2fN23PKyT1HKPGeAYgziow&s"
+            },
+            "nawada": {
+                place: "Nawada Temples",
+                food: "Tilkut",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREbCafjVSgb2qn4Uxo6DuXUltcL8JV9Ovdao9a904Mec-m-f3fVHPoXYLP6HK4urpI8ec&usqp=CAU"
+            },
+            "lalitpur": {
+                place: "Lalitpur Fort",
+                food: "Khaja",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQOR4zQfbz3brdq0Nv2Ar-hmMnWHDD3H3MAg&s"
+            },
+            "katihar": {
+                place: "Kumarikund",
+                food: "Chana Ghugni",
+                placeImg: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Kumarikund_Katihar.jpg"
+            },
+            "purnea": {
+                place: "Kosi River",
+                food: "Makhana Kheer",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSBMoB5lELqm0brAEsDaMTMiKDmgX2lctZVw&s"
+            },
+            "supaul": {
+                place: "Supaul Lake",
+                food: "Khaja",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf0zpWzO7svtcOWzCJeBgJOs-h-rLJ9DzXKQ&s"
+            },
+            "bihar sharif": {
+                place: "Sher Shah Suri Tomb",
+                food: "Sattu Paratha",
+                placeImg: "https://assets.telegraphindia.com/telegraph/2022/Feb/1645786453_sasaram-sher-shah-1.jpg"
+            },
+            "madhubani": {
+                place: "Madhubani Paintings",
+                food: "Mithila Pudding",
+                placeImg: "https://dailydesignist.com/cdn/shop/products/2023051281505442.jpg?v=1683576226"
+            },
+            "saharsa": {
+                place: "Saharsa Fort",
+                food: "Chana Ghugni",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkZi-kiBIsXdpz3WAkN2aLqaszFgFfls1dPw&s"
+            },
+            "samastipur": {
+                place: "Samastipur Temples",
+                food: "Khaja",
+                placeImg: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/8b/f3/8c/front-gate.jpg?w=900&h=-1&s=1"
+            },
+            "khagaria": {
+                place: "Khagaria Bridge",
+                food: "Mithila Pudding",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxHC7J-d-rPY5RUAeLEyVzN8O1t7pyCrZAfdDa5B7Z4glFy1_LkS2FOwZzo_RJraqLW2o&usqp=CAU"
+            },
+            "sheohar": {
+                place: "Sheohar Fort",
+                food: "Makhana Kheer",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9i0s7h8l_g8uKrRb_JWe2Q32Vj1Za41o3rA&s"
+            },
+            "sitamarhi": {
+                place: "Janaki Mandir",
+                food: "Mithila Pudding",
+                placeImg: "https://www.livehindustan.com/lh-img/uploadimage/library/2022/10/22/16_9/16_9_6/janki_mandir_in_sitamarhi_1666419351.jpeg"
+            },
+            "chhapra": {
+                place: "Chhapra Ghat",
+                food: "Khaja",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7Esyuvloly9e6noNBDmXDsEB3C2Oxr8osum9vZgd1wSN-y-OINZOTSqlwUxSiwhFHBE8&usqp=CAU"
+            },
+            "bhojpur": {
+                place: "Bhojpur Temples",
+                food: "Sattu Paratha",
+                placeImg: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/6a/de/67/bhojpur-temple.jpg?w=1200&h=-1&s=1"
+            },
+            "munger": {
+                place: "Munger Fort",
+                food: "Litti Chokha",
+                placeImg: "https://upload.wikimedia.org/wikipedia/commons/5/5d/MungerFort.jpg"
+            },
+            "banka": {
+                place: "Banka Fort",
+                food: "Khaja",
+                placeImg: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi58ro5hUGYXyNIRAvJ0Umab4oNhn-iEJvbN6WSO1C0mm41SkKv5Jcw-EPj05NdYy0yeXlkuX4KAalfW7KbFbX-HaAa5osMB-MmxnXPJGfJpfxjdsF_OOWHazaL3X4rqm4zHQRuuHNOie8B/s1600/17+Bankapur+Fort+Garden+Sculpture.jpg"
+            },
+            "gopalganj": {
+                place: "Thawe Mandir",
+                food: "Khaja",
+                placeImg: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS159iQqYjXSAdsBXhrH4k3igOeFQEUM8xQlA&s"
+            }
+        };
+
+        function searchDistrict() {
+            const query = document.getElementById('search-district').value.toLowerCase();
+            const district = districtData[query];
+
+            const resultContainer = document.querySelector('.result-container');
+            resultContainer.innerHTML = ''; // Clear previous results
+
+            if (district) {
+                const districtCard = document.createElement('div');
+                districtCard.classList.add('district-card');
+
+                const img = document.createElement('img');
+                img.src = district.placeImg;
+                districtCard.appendChild(img);
+
+                const info = document.createElement('div');
+                info.classList.add('district-info');
+
+                const title = document.createElement('h3');
+                title.textContent = district.place;
+                info.appendChild(title);
+
+                const food = document.createElement('p');
+                food.textContent = 'Famous Food: ' + district.food;
+                info.appendChild(food);
+
+                districtCard.appendChild(info);
+                resultContainer.appendChild(districtCard);
             } else {
-                element.style.display = "none";
+                resultContainer.innerHTML = '<p class="alert">No district found! Try again.</p>';
             }
         }
     </script>
